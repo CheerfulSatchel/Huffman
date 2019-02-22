@@ -2,6 +2,7 @@
 
 HuffmanNode::HuffmanNode() {
   val = -1;
+  character = '';
   leftChild = 0;
   rightChild = 0;
 }
