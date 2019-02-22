@@ -4,7 +4,7 @@ CXXFLAGS = -Wall -g
 
 build:
 	mkdir -p builds
-	$(CXX) $(CXXFLAGS) -o builds/huffy huffmanenc.cpp binary_heap.cpp
+	$(CXX) $(CXXFLAGS) -o builds/huffy huffman_enc.cpp binary_heap.cpp huffman_node.cpp
 
 clean:
 	rm *.o
