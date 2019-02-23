@@ -9,7 +9,7 @@ class HuffmanNode {
 
   //TODO: Set following fields as private and use 'friends' keyword
   int freq;
-  char c;
+  char letter;
   HuffmanNode* leftChild;
   HuffmanNode* rightChild;
 };

@@ -1,8 +1,8 @@
 #include "huffman_node.h"
 
 HuffmanNode::HuffmanNode() {
-  val = -1;
-  character = '';
+  freq = -1;
+  letter = 0;
   leftChild = 0;
   rightChild = 0;
 }
