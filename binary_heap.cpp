@@ -70,7 +70,7 @@ bool BinaryHeap::IsEmpty() {
 void BinaryHeap::Print() {
   int i;
   for (i = 1; i <= heap_size(); i++) {
-    cout << "Frequency: " << heap_[i]->freq << ", Character: " << heap_[i]->letter;
+    cout << "Frequency: " << heap_[i]->freq << ", Character: " << heap_[i]->letter << endl;
   }
   cout << endl;
 }
