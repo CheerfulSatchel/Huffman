@@ -12,30 +12,32 @@
 #define BINARY_HEAP_H
 
 #include <vector>
+#include "huffman_node.h"
+
 using namespace std;
 
 class BinaryHeap {
  public:
  // Default constructor
   BinaryHeap();
-  BinaryHeap(vector<int> vec);
+  BinaryHeap(vector<HuffmanNode*> vec);
 
   ~BinaryHeap();
   
   // Methods
-  void Insert(int x);
-  int FindMin();
-  int DeleteMin();
+  void Insert(HuffmanNode* node);
+  HuffmanNode* FindMin();
+  HuffmanNode* DeleteMin();
   void MakeEmpty();
   bool IsEmpty();
   void Print();
 
   // Getters
   unsigned int heap_size();
-  vector<int> heap();
+  vector<HuffmanNode*> heap();
 
  private:
-  vector<int> heap_;
+  vector<HuffmanNode*> heap_;
 
   void PercolateUp(int hole);
   void PercolateDown(int hole);
