@@ -10,7 +10,7 @@ int main() {
 
   nodeA->leftChild = nodeB;
 
-  std::cout << "It's ovah " << nodeA->leftChild->val << std::endl;
+  std::cout << "It's ovah " << nodeA->leftChild->freq << std::endl;
 
   delete nodeB;
   delete nodeA;
