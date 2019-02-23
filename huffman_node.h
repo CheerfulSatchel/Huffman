@@ -5,6 +5,7 @@
 class HuffmanNode {
  public:
   HuffmanNode();
+  HuffmanNode(int freq, char letter);
   ~HuffmanNode();
 
   //TODO: Set following fields as private and use 'friends' keyword
