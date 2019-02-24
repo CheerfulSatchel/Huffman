@@ -1,7 +1,4 @@
 #include <iostream>
-#include <unordered_map>
-#include <stdio.h>
-#include <stdlib.h>
 
 #include "huffman_tree.h"
 
@@ -17,39 +14,19 @@ int main(int argc, char **argv) {
     cout << "File '" << argv[1] << "' not found!!" << endl;
   }
 
-  unordered_map<char, int> frequencyTable;
+  HuffmanTree tree;
 
-  char cItr;
-  while ((cItr = fgetc(fp)) != EOF) {
-    unordered_map<char, int>::const_iterator mapItr = frequencyTable.find(cItr);
+  unordered_map<char, int> frequencyTable = tree.ReadInputFileToMap(fp);
 
-    // Initial insertion 
-    if (mapItr == frequencyTable.end()) {
-      cout << "Insertin new: " << cItr << endl;
-      frequencyTable.insert(pair<char, int>(cItr, 1));
-    } else { // Increment character frequency if already in the table
-      frequencyTable.at(cItr) += 1;
-    }
+  fclose(fp);
 
-    cout << "Yee: " << cItr << ", ";
-  }
+  tree.AddTableToHeap(frequencyTable);
 
-  unordered_map<char, int>::const_iterator itr;
+  tree.ConstructHuffmanTree();
   
-  for (itr = frequencyTable.begin(); itr != frequencyTable.end(); ++itr) {
-    cout << itr->first << " : " << itr->second << endl;
-  }
-  
+  HuffmanNode* head = tree.get_head_node();
 
-  HuffmanNode* nodeA = new HuffmanNode();
-  HuffmanNode* nodeB = new HuffmanNode();
-
-  nodeA->leftChild = nodeB;
-
-  std::cout << "It's ovah " << nodeA->leftChild->freq << std::endl;
-
-  delete nodeB;
-  delete nodeA;
+  tree.PrintTree(head);
 
   return 0;
 }
