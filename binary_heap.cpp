@@ -8,12 +8,18 @@ BinaryHeap::BinaryHeap() {
 
 BinaryHeap::BinaryHeap(vector<HuffmanNode*> vec) {
   int i;
-  for (i = 0; i < vec.size(); i++) {
+  for (i = 0; i < vec.size(); ++i) {
     Insert(vec[i]);
   }
 }
 
 BinaryHeap::~BinaryHeap() {
+  int i;
+  for (i = 0; i < heap_.size(); ++i) {
+    if (heap_[i]) {
+      delete heap_[i];
+    }
+  }
 }
 
 void BinaryHeap::Insert(HuffmanNode* node) {
@@ -77,8 +83,8 @@ void BinaryHeap::Print() {
 
 // Hole is the start index to percolate upwards
 void BinaryHeap::PercolateUp(int hole) {
-  while (hole >= 1) {
-    if (heap_[hole/2] && (heap_[hole]->freq < heap_[hole/2]->freq)) {
+  while (hole > 1) {
+    if (heap_[hole]->freq < heap_[hole/2]->freq) {
       HuffmanNode* temp = heap_[hole];
       heap_[hole] = heap_[hole/2];
       heap_[hole/2] = temp;
