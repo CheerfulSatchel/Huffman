@@ -1,7 +1,7 @@
 #ifndef HUFFMAN_TREE_H
 #define HUFFMAN_TREE_H
 
-#include "binary_tree.h"
+#include "binary_heap.h"
 
 class HuffmanTree {
  public:
@@ -13,6 +13,6 @@ class HuffmanTree {
 
  private:
   BinaryHeap* heap_;  
-}
+};
 
-#endif HUFFMAN_TREE_H
+#endif

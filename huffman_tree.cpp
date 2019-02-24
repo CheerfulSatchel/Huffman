@@ -1,3 +1,5 @@
+#include "huffman_tree.h"
+
 HuffmanTree::HuffmanTree() {
   heap_ = new BinaryHeap();
 }
@@ -7,11 +9,11 @@ HuffmanTree::~HuffmanTree() {
 }
 
 void HuffmanTree::Insert(HuffmanNode* node) {
-  heap_.Insert(node);
+  heap_->Insert(node);
 }
 
 HuffmanNode* HuffmanTree::DeleteMin() {
-  heap_.DeleteMin();
+  return heap_->DeleteMin();
 }
 
 

@@ -1,5 +1,6 @@
 #include <iostream>
 #include "huffman_node.h"
+#include "huffman_tree.h"
 
 int main() {
 
