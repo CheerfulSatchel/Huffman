@@ -16,4 +16,82 @@ HuffmanNode* HuffmanTree::DeleteMin() {
   return heap_->DeleteMin();
 }
 
+unordered_map<char, int> HuffmanTree::ReadInputFileToMap(FILE* fp) {
+  unordered_map<char, int> frequencyTable;
 
+  cout << "RUHUH" << endl;
+
+  char cItr;
+  while ((cItr = fgetc(fp)) != EOF) {
+    cout << cItr << " and .... " << endl;
+    
+    unordered_map<char, int>::const_iterator mapItr = frequencyTable.find(cItr);
+
+    if (mapItr == frequencyTable.end()) {
+      // First insertion of character
+      frequencyTable.insert(pair<char, int>(cItr, 1));
+    } else {
+      // Subsequent insertions of character increment count
+      frequencyTable.at(cItr) += 1;
+    }
+
+    cout << cItr;
+  }
+
+  return frequencyTable;
+  
+}
+
+void HuffmanTree::AddTableToHeap(unordered_map<char, int> frequencyTable) {
+  unordered_map<char, int>::const_iterator itr;
+
+  for (itr = frequencyTable.begin(); itr != frequencyTable.end(); ++itr) {
+    char letter  = itr->first;
+    int freq = itr->second;
+
+    cout << "Inserting " << letter << " : " << freq << endl; 
+    HuffmanNode* node = new HuffmanNode(freq, letter);
+    Insert(node);
+  }
+}
+
+void HuffmanTree::ConstructHuffmanTree() {
+  int heap_size = heap_->heap_size();
+
+  heap_->Print();
+
+  while (heap_size > 1) {
+    HuffmanNode* nodeA = heap_->DeleteMin();
+    HuffmanNode* nodeB = heap_->DeleteMin();
+
+    cout << "Left child: " << nodeA->letter << endl;
+
+    int totalFreq = nodeA->freq + nodeB->freq;
+
+    HuffmanNode* combined = new HuffmanNode(totalFreq, '-');
+
+    combined->leftChild = nodeA;
+    combined->rightChild = nodeB;
+
+    heap_->Insert(combined);
+
+    heap_size = heap_->heap_size();
+  }
+}
+
+// Prints tree in-order
+void HuffmanTree::PrintTree(HuffmanNode* head) {
+  if (!head) {
+    return;
+  }
+  
+  PrintTree(head->leftChild);
+
+  cout << "Value: " << head->freq << " : " << head->letter << endl;
+
+  PrintTree(head->rightChild);
+}
+
+HuffmanNode* HuffmanTree::get_head_node() {
+  return heap_->FindMin();
+}
