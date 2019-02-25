@@ -15,4 +15,5 @@ The implementation was done by self. :smile:
 ## Run
 
 `make build` to build.
+
 `./builds/HuffEnc <SOME_TXT_FILE>` to execute.
