@@ -26,7 +26,9 @@ int main(int argc, char **argv) {
   
   HuffmanNode* head = tree.get_head_node();
 
-  tree.PrintTree(head);
+  string s = "";
+
+  tree.PrintEncoding(head, s);
 
   return 0;
 }
