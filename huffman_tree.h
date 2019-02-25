@@ -6,6 +6,7 @@
 
 #include <unordered_map>
 #include <iostream>
+#include <string>
 
 #include "binary_heap.h"
 
@@ -24,6 +25,7 @@ class HuffmanTree {
   void AddTableToHeap(unordered_map<char, int> frequencyTable);
   void ConstructHuffmanTree();
   void PrintTree(HuffmanNode* head);
+  void PrintEncoding(HuffmanNode* head, string s);
 
   // Getters
   HuffmanNode* get_head_node();

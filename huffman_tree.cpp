@@ -92,6 +92,25 @@ void HuffmanTree::PrintTree(HuffmanNode* head) {
   PrintTree(head->rightChild);
 }
 
+void HuffmanTree::PrintEncoding(HuffmanNode* head, string s) {
+  if (!head) {
+    return;
+  }
+
+  if (!head->leftChild && !head->rightChild) {
+    cout << "Pairing is " << head->letter << " : " << s << endl;
+    return;
+  }
+
+  if (head->leftChild) {
+     PrintEncoding(head->leftChild, s + "0");
+  }
+
+  if (head->rightChild) {
+    PrintEncoding(head->rightChild, s + "1");
+  }
+}
+
 HuffmanNode* HuffmanTree::get_head_node() {
   return heap_->FindMin();
 }
