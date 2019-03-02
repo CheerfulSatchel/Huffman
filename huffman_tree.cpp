@@ -4,7 +4,7 @@ HuffmanTree::HuffmanTree() {
   heap_ = new BinaryHeap();
 }
 
-HuffmanTree::~HuffmanTree() {
+HuffmanTree::~HuffmanTree() {  
   delete heap_;
 }
 
@@ -18,8 +18,6 @@ HuffmanNode* HuffmanTree::DeleteMin() {
 
 unordered_map<char, int> HuffmanTree::ReadInputFileToMap(FILE* fp) {
   unordered_map<char, int> frequencyTable;
-
-  cout << "RUHUH" << endl;
 
   char cItr;
   while ((cItr = fgetc(fp)) != EOF) {
@@ -77,6 +75,71 @@ void HuffmanTree::ConstructHuffmanTree() {
 
     heap_size = heap_->heap_size();
   }
+}
+
+void HuffmanTree::ReconstructHuffmanTree(string character, string prefix) {
+  HuffmanNode* currentNode = get_head_node();
+
+  char letter = character.c_str()[0];
+  const char* prefixes = prefix.c_str();
+
+  int i;
+  for (i=0; i<prefix.size(); ++i) {
+    if (prefixes[i] == '0') {
+      if (currentNode->leftChild) {
+	currentNode = currentNode->leftChild;
+      } else {
+        HuffmanNode* left;
+	// Internal '-' node
+	if (i+1 < prefix.size()) {
+	  left = new HuffmanNode(0, '-');
+	} else {
+	  // Child <letter> node
+	  left = new HuffmanNode(0, letter);
+	}
+
+	currentNode->leftChild = left;
+	currentNode = currentNode->leftChild;
+      }
+    } else if (prefixes[i] == '1') {
+      if (currentNode->rightChild) {
+	currentNode = currentNode->rightChild;
+      } else {
+	HuffmanNode* right;
+	// Internal '-' node
+	if (i+1 < prefix.size()) {
+	  right = new HuffmanNode(0, '-');
+	} else {
+	  // Child <letter> node
+	  right = new HuffmanNode(0, letter);
+	}
+
+	currentNode->rightChild = right;
+	currentNode = currentNode->rightChild;
+      }
+    } else {
+      throw "Unsupported character found!!!";
+    }
+  }
+}
+
+char HuffmanTree::DecodeTree(string bits) {
+  const char* bitsies = bits.c_str();
+
+  HuffmanNode* root = get_head_node();
+  
+  int i;
+  for (i=0; i<bits.size(); ++i) {
+    if (bitsies[i] == '0') {
+      root = root->leftChild;
+    } else if (bitsies[i] == '1') {
+      root = root->rightChild;
+    } else {
+      throw "Invalid character found!!!";
+    }
+  }
+
+  return root->letter;
 }
 
 // Prints tree in-order

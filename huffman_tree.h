@@ -27,9 +27,11 @@ class HuffmanTree {
   void PrintTree(HuffmanNode* head);
   void PrintEncoding(HuffmanNode* head, string s);
 
+  void ReconstructHuffmanTree(string character, string prefix);
+  char DecodeTree(string bits);
+
   // Getters
   HuffmanNode* get_head_node();
-
   
  private:
   BinaryHeap* heap_;  
