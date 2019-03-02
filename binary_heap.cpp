@@ -14,12 +14,6 @@ BinaryHeap::BinaryHeap(vector<HuffmanNode*> vec) {
 }
 
 BinaryHeap::~BinaryHeap() {
-  int i;
-  for (i = 0; i < heap_.size(); ++i) {
-    if (heap_[i]) {
-      delete heap_[i];
-    }
-  }
 }
 
 void BinaryHeap::Insert(HuffmanNode* node) {
